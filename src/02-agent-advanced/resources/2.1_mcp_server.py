@@ -17,9 +17,7 @@ def search_web(query: str) -> Dict[str, Any]:
     return tavily_client.search(query)
 
 
-@mcp.resource(
-    "github://langchain-ai/langchain-mcp-adapters/main/README.md"
-)
+@mcp.tool()
 def github_file():
     """Access the langchain-mcp-adapters README file."""
     url = "https://raw.githubusercontent.com/langchain-ai/langchain-mcp-adapters/main/README.md"
@@ -39,15 +37,16 @@ def prompt():
     You are a helpful assistant that answers user questions about
     LangChain, LangGraph and LangSmith.
 
-    You can use the following tools/resources:
+    You can use the following tools:
     - search_web: Search the web for information
     - github_file: Access the langchain-mcp-adapters README file
 
     If the user asks a question that is not related to
     LangChain, LangGraph or LangSmith, say:
+
     "I'm sorry, I can only answer questions about LangChain, LangGraph and LangSmith."
 
-    You may use multiple tool and resource calls when necessary.
+    You may use multiple tool calls when necessary.
     """
 
 
